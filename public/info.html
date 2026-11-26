@@ -1,0 +1,75 @@
+<!doctype html>
+<html lang="de">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Regelungen: Datenschutz, Anonymisierung, Rolle der KI</title>
+<link rel="stylesheet" href="/static/stil.css">
+<link rel="stylesheet" href="stil.css">
+</head>
+<body class="lehrkraft">
+<main class="info">
+<nav class="seiten">
+  <a class="knopf zweit klein" href="/lehrer" data-datei="lehrer">‹ Lehrkraft-Bereich</a>
+  <a class="knopf zweit klein" href="/hinweise" data-datei="hinweise">Hinweise zur Durchführung</a>
+  <a class="knopf zweit klein" href="/richtlinien" data-datei="richtlinien">Richtlinien &amp; Recht (NRW)</a>
+</nav>
+<div class="karte">
+<h1>Datenschutz in dieser Anwendung</h1>
+<p>Diese Seite erklärt kurz, wie „Klassenarbeit online“ mit Daten umgeht und welche Rolle die KI spielt. Es handelt sich um einen Prototyp.</p>
+
+<h2>1. Anonymisierung</h2>
+<ul>
+<li>Schülerinnen und Schüler melden sich nur mit einer <b>Nummer</b> und dem <b>Test-Code</b> an – nie mit Namen.</li>
+<li>Die Zuordnung Nummer → Name führt die Lehrkraft selbst, außerhalb dieser Anwendung (z. B. auf Papier).</li>
+<li>Jede Nummer kann nur einmal teilnehmen und nur einmal abgeben. Versucht ein zweites Gerät, sich mit einer vergebenen Nummer anzumelden, wird das abgewiesen und der Lehrkraft angezeigt.</li>
+<li>Bitte schreibt in Freitext-Antworten keine Namen. Was dort eingetippt wird, wird als Antwort gespeichert.</li>
+</ul>
+
+<h2>2. Welche Daten werden gespeichert – und wo?</h2>
+<ul>
+<li>Gespeichert werden: die Aufgaben samt Lösungen, je Nummer die Antworten, Zeitpunkte (Anmeldung, Start, Abgabe) und die Bewertung.</li>
+<li><b>Nicht</b> gespeichert werden: Namen, E-Mail-Adressen oder Gerätekennungen der Schülerinnen und Schüler. Die Anwendung selbst speichert auch keine IP-Adressen; der Hosting-Anbieter kann allerdings technische Zugriffsprotokolle führen.</li>
+<li>Die Daten liegen als Dateien auf dem Server, auf dem die Lehrkraft die Anwendung betreibt. Es gibt keine Werbung, keine Analyse-Dienste und keine Cookies für Schülerinnen und Schüler.</li>
+<li>Auf dem iPad wird während des Tests eine Sicherungskopie der eigenen Antworten abgelegt, damit bei einem WLAN-Abbruch oder Neuladen nichts verloren geht.</li>
+<li>Die Lehrkraft kann einen Test mit allen Antworten jederzeit vollständig löschen.</li>
+</ul>
+
+<h2>3. Rolle der KI</h2>
+<ul>
+<li><b>Beim Erstellen:</b> Die KI (Claude von Anthropic) wandelt die hochgeladene Klassenarbeit und den Erwartungshorizont in digitale Aufgaben um. Die Lehrkraft prüft und ändert jede Aufgabe, Lösung und Punktzahl vor der Freigabe.</li>
+<li><b>Geschlossene Aufgaben</b> (Auswahl, Zahlen, Lücken, Zuordnung, Vokabeln) wertet <b>nicht</b> die KI aus, sondern ein festes Regelwerk: Die Antwort wird mit der hinterlegten Lösung verglichen; gleichwertige Schreibweisen (z. B. 0,5 und 1/2) zählen als richtig.</li>
+<li><b>Offene Aufgaben:</b> Die KI schlägt anhand des Erwartungshorizonts Punkte mit kurzer Begründung vor. Das ist nur ein Vorschlag. Die Lehrkraft bestätigt oder ändert jede einzelne Bewertung.</li>
+<li><b>Noten</b> entstehen erst, wenn die Lehrkraft alle Bewertungen bestätigt und die Noten freigegeben hat. Die KI vergibt keine Noten.</li>
+</ul>
+
+<h2>4. Was geht an die KI?</h2>
+<ul>
+<li>Die hochgeladene Klassenarbeit mit Erwartungshorizont (ohne Schülerdaten).</li>
+<li>Bei offenen Aufgaben: der Antworttext, die Aufgabe und der Erwartungshorizont. Die Antworten werden in zufälliger Reihenfolge und ohne Nummer übermittelt.</li>
+<li>Niemals: Namen, Nummern, Noten oder Ergebnislisten.</li>
+<li>Die Verarbeitung erfolgt über die Programmierschnittstelle von Anthropic; deren Server stehen in der Regel außerhalb der EU. Über diese Schnittstelle übermittelte Inhalte werden nach Angaben des Anbieters nicht zum Training der Modelle verwendet.</li>
+</ul>
+
+<h2>5. Hinweise für die Lehrkraft</h2>
+<ul>
+<li>Vor dem Einsatz für eine benotete Arbeit bitte mit Schulleitung und den Datenschutzbeauftragten der Schule abstimmen, ob dieser Weg an eurer Schule zulässig ist. Diese Seite ersetzt keine rechtliche Prüfung.</li>
+<li>Nachteilsausgleiche (zusätzliche Bearbeitungszeit) lassen sich für einzelne Nummern einstellen.</li>
+<li>Nach jeder Arbeit empfiehlt sich die Sicherung (Reiter „Ergebnisse“) und das Löschen des Tests, sobald die Noten übertragen sind.</li>
+</ul>
+
+<p><a href="/lehrer" data-datei="lehrer">Zum Bereich für die Lehrkraft</a></p>
+</div>
+</main>
+<script>
+// Ohne Server (Datei per Doppelklick geöffnet): Verweise auf die Nachbardateien umbiegen.
+if (!/^https?:$/.test(location.protocol)) {
+  const demo = /demo-[a-z]+\.html$/.test(location.pathname);
+  for (const a of document.querySelectorAll("a[data-datei]")) {
+    const d = a.dataset.datei;
+    a.href = d === "lehrer" ? (demo ? "demo-lehrkraft.html" : "../demo-lehrkraft.html") : (demo ? "demo-" + d + ".html" : d + ".html");
+  }
+}
+</script>
+</body>
+</html>
